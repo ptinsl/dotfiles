@@ -1,0 +1,55 @@
+add_newline = false
+format = "$hostname$directory${custom.worktree}$git_branch$git_commit$git_state$git_status$python$cmd_duration$line_break$character"
+
+[hostname]
+ssh_only = true
+format = "[$hostname]($style) "
+style = "yellow"
+
+[directory]
+truncation_length = 10
+truncate_to_repo = false
+style = "blue"
+repo_root_style = "bold blue"
+before_repo_root_style = "blue"
+format = '[$path]($style)[$read_only]($read_only_style) '
+repo_root_format = '[$before_root_path]($before_repo_root_style)[$repo_root]($repo_root_style)[$path]($style)[$read_only]($read_only_style) '
+
+[custom.worktree]
+when = '[ "$(git rev-parse --path-format=absolute --git-dir)" != "$(git rev-parse --path-format=absolute --git-common-dir)" ]'
+command = 'basename "$(dirname "$(git rev-parse --path-format=absolute --git-common-dir)")"'
+require_repo = true
+shell = ["sh"]
+format = '[of: ](bright-black)[$output]($style) '
+style = "cyan"
+
+[git_branch]
+format = '[b: ](bright-black)[$branch]($style) '
+style = "purple"
+
+[git_commit]
+only_detached = true
+format = "[@$hash]($style) "
+style = "yellow"
+
+[git_state]
+format = "[$state( $progress_current/$progress_total)]($style) "
+style = "red"
+
+[git_status]
+format = "([$all_status$ahead_behind]($style) )"
+style = "red"
+
+[python]
+version_format = '${raw}'
+format = '[py ](bright-black)[$version( \($virtualenv\))]($style) '
+style = "green"
+
+[cmd_duration]
+min_time = 2000
+format = "[$duration]($style) "
+style = "bright-black"
+
+[character]
+success_symbol = "[❯](green)"
+error_symbol = "[❯](red)"
