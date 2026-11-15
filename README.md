@@ -29,14 +29,14 @@ brew install starship zsh-autosuggestions zsh-syntax-highlighting jq
 
 ## vm
 
-from inside the tmux session:
+bash for now. from inside the tmux session:
 
 ```sh
 git clone <your-repo> ~/dotfiles && ~/dotfiles/install.sh
-exec zsh
+exec bash
 ```
 
-installs zsh, plugins, jq and starship, symlinks `.zshrc`, sets tmux `default-shell` to zsh (new panes only, `exec zsh` in existing ones) and adds the status line to `~/.claude/settings.json`. run once.
+installs jq and starship, adds starship to `~/.bashrc` and adds the status line to `~/.claude/settings.json`. safe to rerun. no autosuggestions until the vm moves to zsh.
 
 ## notes
 
